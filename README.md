@@ -4,10 +4,11 @@ This is a source-first course: read one small file, predict it, run it, change
 one fact, rebuild, and explain the observation. There is no job-system library
 hiding the machinery. Requirements are a C11 compiler, `make`, and a
 POSIX/Linux pthread implementation. The pthread API is POSIX rather than ISO C;
-`clock_gettime`, `sysconf`, and shell checks are also POSIX. Sanitizer availability
-and behavior are compiler/OS dependent. The check and stress watchdogs use the
-Linux/coreutils `timeout` command; `CHECK_TIMEOUT` and `STRESS_TIMEOUT` override
-their default 30-second per-process deadlines.
+`clock_gettime` and `sysconf` are also POSIX. The check and stress scripts use
+POSIX `sh` syntax but require `mktemp` and the Linux/coreutils `timeout` command;
+`CHECK_TIMEOUT` and `STRESS_TIMEOUT` override their default 30-second
+per-process deadlines. Sanitizer availability and behavior are compiler/OS
+dependent.
 
 This is multithreading from zero, not C from zero. You should already be able to
 read pointers, arrays, structs, function pointers, stack versus heap lifetime,

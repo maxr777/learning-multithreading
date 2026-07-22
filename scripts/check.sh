@@ -68,14 +68,13 @@ if [ -e /dev/full ]; then
     if run_with_deadline "$B/showcase" --serial --width 16 --height 16 \
         --output /dev/full \
         >"$tmpdir/output-failure.log" 2>&1; then
-        echo 'check: showcase did not report /dev/full output failure' >&2
-        exit 1
+        status=0
     else
         status=$?
-        if [ "$status" -eq 124 ]; then
-            echo 'check: showcase timed out while testing /dev/full' >&2
-            exit 1
-        fi
+    fi
+    if [ "$status" -ne 1 ]; then
+        echo "check: unexpected showcase /dev/full exit status: $status (expected 1)" >&2
+        exit 1
     fi
 fi
 
